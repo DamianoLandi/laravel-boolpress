@@ -10,7 +10,7 @@
 <div>
     <form method="POST" action="{{ route('admin.posts.update') }}">
         @csrf
-        @method('PATCH')
+        @method("PATCH")
         <div>
             <label for="title">Titolo</label>
             <input type="text" name="title" id="title" value="{{$post->title}}">
@@ -23,7 +23,7 @@
             <label for="content">Contenuto</label>
             <textarea name="content" id="content" cols="30" rows="10">{{$post->content}}</textarea>
         </div>
-        <button type="submit">Crea</button>
+        <button type="submit">Modifica</button>
     </form>
 </div>
 </body>

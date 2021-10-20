@@ -1,6 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
+<nav>
+    <a href="{{route('admin.posts.index')}}">Lista</a>
+    <a href="{{route('admin.posts.create')}}">Crea Nuovo Post</a>
+</nav>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">

@@ -8,5 +8,9 @@
 </head>
 <body>
     <h1>Show</h1>
+
+    <h2>{{$post->title}}</h2>
+
+    <a href="{{route('admin.posts.edit', $post->id)}}">Modifica</a>
 </body>
 </html>

@@ -13,7 +13,7 @@
         <h2>{{$post->title}}</h2>
         <p>{{$post->description}}</p>
         <a href="{{route('admin.posts.show', $post->id)}}">Dettagli</a>
-        <a href='{{route("admin.posts.edit", $post->id)}}'>Modifica</a>
+        <a href="{{route('admin.posts.edit', $post->id)}}">Modifica</a>
         <form method="POST" action="{{ route('admin.posts.destroy', $post->id) }}">
             @method("DELETE")
             @csrf

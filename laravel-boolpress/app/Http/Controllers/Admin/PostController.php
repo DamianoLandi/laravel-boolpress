@@ -63,9 +63,8 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Post $post)
     {
-        $post = Post::findOrFail($id);
         return view("admin.posts.edit", compact('post'));
     }
 
@@ -95,6 +94,6 @@ class PostController extends Controller
     {
         $post = Post::findOrFail($id);
         $post->delete();
-        return redirect()->route('admin-posts.index');
+        return redirect()->route('admin.posts.index');
     }
 }
