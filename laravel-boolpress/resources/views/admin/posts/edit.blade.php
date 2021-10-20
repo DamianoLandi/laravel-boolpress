@@ -8,7 +8,7 @@
 </head>
 <body>
 <div>
-    <form method="POST" action="{{ route('admin.posts.update') }}">
+    <form method="POST" action="{{ route('admin.posts.update', $post->id) }}">
         @csrf
         @method("PATCH")
         <div>
