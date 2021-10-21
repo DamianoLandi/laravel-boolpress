@@ -1,23 +1,38 @@
 <template>
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
+
                     <div class="card-header">Titolo</div>
 
                     <div class="card-body">
                         Work in Progress
                     </div>
-                </div>
-            </div>
-        </div>
+                    <div class="post" v-for="post in posts" :key="post.index">
+                        <p>{{post.title}}</p>
+                    </div>
     </div>
 </template>
 
 <script>
     export default {
-        mounted() {
-            console.log('Component mounted.')
+        data() {
+            return {
+                posts:[],
+            }
+        },
+        methods: {
+            getPosts(){
+                axios
+                    .get(`http://localhost:8000/api/posts`)
+                    .then((res) => {
+                        const response = res.data;
+                        this.posts = response;
+                        console.log("ok");
+                        console.log(response);
+                    }).catch(err => console.error(err));
+            },
+        },
+        created() {
+            this.getPosts();
         }
-    }
+    };
 </script>

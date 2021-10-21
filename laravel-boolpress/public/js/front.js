@@ -1922,11 +1922,28 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  mounted: function mounted() {
-    console.log('Component mounted.');
+  data: function data() {
+    return {
+      posts: []
+    };
+  },
+  methods: {
+    getPosts: function getPosts() {
+      var _this = this;
+
+      axios.get("http://localhost:8000/api/posts").then(function (res) {
+        var response = res.data;
+        _this.posts = response;
+        console.log("ok");
+        console.log(response);
+      })["catch"](function (err) {
+        return console.error(err);
+      });
+    }
+  },
+  created: function created() {
+    this.getPosts();
   }
 });
 
@@ -37593,28 +37610,26 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "col-md-8" }, [
-          _c("div", { staticClass: "card" }, [
-            _c("div", { staticClass: "card-header" }, [_vm._v("Titolo")]),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
-              _vm._v("\n                    Work in Progress\n                ")
-            ])
-          ])
+  return _c(
+    "div",
+    { staticClass: "container" },
+    [
+      _c("div", { staticClass: "card-header" }, [_vm._v("Titolo")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "card-body" }, [
+        _vm._v("\n                    Work in Progress\n                ")
+      ]),
+      _vm._v(" "),
+      _vm._l(_vm.posts, function(post) {
+        return _c("div", { key: post.index, staticClass: "post" }, [
+          _c("p", [_vm._v(_vm._s(post.title))])
         ])
-      ])
-    ])
-  }
-]
+      })
+    ],
+    2
+  )
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -49963,6 +49978,7 @@ __webpack_require__.r(__webpack_exports__);
  */
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
+window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 
 var app = new Vue({
