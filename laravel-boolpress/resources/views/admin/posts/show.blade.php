@@ -10,6 +10,7 @@
     <h1>Show</h1>
 
     <h2>{{$post->title}}</h2>
+    <p>Categoria: @if($post->category) {{ $post->category->name }} @else Nessuna @endif</p>
 
     <a href="{{route('admin.posts.edit', $post->id)}}">Modifica</a>
 </body>

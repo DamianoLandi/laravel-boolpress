@@ -1935,8 +1935,6 @@ __webpack_require__.r(__webpack_exports__);
       axios.get("http://localhost:8000/api/posts").then(function (res) {
         var response = res.data;
         _this.posts = response;
-        console.log("ok");
-        console.log(response);
       })["catch"](function (err) {
         return console.error(err);
       });

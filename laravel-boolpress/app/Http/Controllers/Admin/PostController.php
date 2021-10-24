@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Post;
+use App\Models\Category;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -24,9 +25,14 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view("admin.posts.create");
+        $request->validate([
+            'category_id' => 'nullable|exists:categories,id'
+        ]);
+        
+        $categories = Category::all();
+        return view("admin.posts.create", compact('categories'));
     }
 
     /**
@@ -63,9 +69,13 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Post $post)
+    public function edit(Request $request, Post $post)
     {
-        return view("admin.posts.edit", compact('post'));
+        $request->validate([
+            'category_id' => 'nullable|exists:categories,id'
+        ]);
+        $categories = Category::all();
+        return view("admin.posts.edit", compact('post', 'categories'));
     }
 
     /**

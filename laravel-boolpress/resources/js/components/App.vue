@@ -26,8 +26,6 @@
                     .then((res) => {
                         const response = res.data;
                         this.posts = response;
-                        console.log("ok");
-                        console.log(response);
                     }).catch(err => console.error(err));
             },
         },
