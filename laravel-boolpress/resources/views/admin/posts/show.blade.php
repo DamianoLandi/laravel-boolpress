@@ -11,6 +11,7 @@
 
     <h2>{{$post->title}}</h2>
     <p>Categoria: @if($post->category) {{ $post->category->name }} @else Nessuna @endif</p>
+    <p>Tags: @forelse($post->tags as $tag) <span>{{$tag->name}} </span>  @empty <span> Nessuno </span>@endforelse</p>
 
     <a href="{{route('admin.posts.edit', $post->id)}}">Modifica</a>
 </body>

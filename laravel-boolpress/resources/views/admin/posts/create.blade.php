@@ -31,6 +31,15 @@
                 @endforeach
             </select>
         </div>
+        <div>
+            <h6>Tags</h6>
+            <div>
+                @foreach($tags as $tag)
+                    <label for="tag-{{$tag->id}}">{{$tag->name}}</label>
+                    <input type="checkbox" id='tag-{{$tag->id}}' value="{{$tag->id}}" name="tags[]">
+                @endforeach
+            </div>
+        </div>
         <button type="submit">Crea</button>
     </form>
 </div>

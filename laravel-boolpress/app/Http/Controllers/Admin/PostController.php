@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Post;
 use App\Models\Category;
+use App\Models\Tag;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -32,7 +33,9 @@ class PostController extends Controller
         ]);
         
         $categories = Category::all();
-        return view("admin.posts.create", compact('categories'));
+        $tags = Tag::all();
+
+        return view("admin.posts.create", compact('categories', 'tags'));
     }
 
     /**
@@ -47,6 +50,8 @@ class PostController extends Controller
         $data = $request->all();
 
         $post = Post::create($data);
+
+        if(array_key_exists('tags', $data)) $post->tags()->attach($data['tags']);
 
         return redirect()->route('admin.posts.show', $post->id);
     }
